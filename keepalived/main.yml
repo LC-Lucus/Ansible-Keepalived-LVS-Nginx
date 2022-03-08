@@ -1,0 +1,19 @@
+---
+# tasks file for keepalived
+- name: yum install keepalived
+  yum:
+    name: keepalived
+    state: installed
+- name: install ipvs
+  yum:
+    name: ipvsadm
+    state: installed
+- name: copy configuration to keepalived
+  template:
+    src: /root/playbook/keepalived_master.conf #从机为keepalived_backup.conf
+    dest: /etc/keepalived/keepalived.conf
+- name: start keepalived
+  service:
+    name: keepalived
+    state: restarted
+    enabled: yes

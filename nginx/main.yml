@@ -1,0 +1,22 @@
+---
+# tasks file for nginx
+- name: yum install epel
+  yum:
+    name: epel-release.noarch
+    state: present
+
+- name: yum install nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: nginx configuration
+  template:
+    src: /root/playbook/nginx.conf
+    dest: /etc/nginx/conf.d/nginx.conf
+
+- name: start nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes

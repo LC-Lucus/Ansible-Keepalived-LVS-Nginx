@@ -1,0 +1,5 @@
+- name: install keepalived
+  hosts: keepalived_master
+
+  roles:
+  - keepalived_master
